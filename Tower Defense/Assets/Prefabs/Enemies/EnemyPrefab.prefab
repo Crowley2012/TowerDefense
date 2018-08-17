@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114522418418337698}
   - component: {fileID: 54553405386857852}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: EnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4466d9c3394e96c4ea4d3d88bc138cf3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 114
   m_CollisionDetection: 0
 --- !u!114 &114522418418337698
 MonoBehaviour:
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkSpeed: 2.1
+  Damage: 2
 --- !u!136 &136081594872183244
 CapsuleCollider:
   m_ObjectHideFlags: 1
