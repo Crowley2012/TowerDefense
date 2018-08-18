@@ -3,21 +3,16 @@ using UnityEngine.UI;
 
 public class Wall : MonoBehaviour
 {
-    #region Game Objects
-    public Text HealthText;
-    #endregion
+    #region Public Fields
 
-    #region Public Variables
     public float Health = 100f;
-    #endregion
+    public Text HealthText;
+
+    #endregion Public Fields
 
     #region Unity Methods
-    void Start ()
-    {
-        HealthText.text = string.Format("Health: {0}", Health);
-    }
 
-    void OnCollisionStay(Collision collisionInfo)
+    private void OnCollisionStay(Collision collisionInfo)
     {
         if (!collisionInfo.gameObject.name.Contains("EnemyPrefab"))
             return;
@@ -31,5 +26,11 @@ public class Wall : MonoBehaviour
             Destroy(collisionInfo.gameObject);
         }
     }
-    #endregion
+
+    private void Start()
+    {
+        HealthText.text = string.Format("Health: {0}", Health);
+    }
+
+    #endregion Unity Methods
 }

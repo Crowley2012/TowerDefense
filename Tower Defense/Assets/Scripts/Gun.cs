@@ -1,26 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    #region Public Fields
+
     public GameObject Bullet;
     public Transform BulletSpawn;
-
     public float test = 10000;
 
-	void Start ()
-    {
-		
-	}
+    #endregion Public Fields
 
-	void Update ()
-    {
-        if (Input.GetMouseButtonUp(0))
-            Fire();
-    }
+    #region Private Methods
 
-    void Fire()
+    private void Fire()
     {
         // Create the Bullet from the Bullet Prefab
         var bullet = Instantiate(Bullet, BulletSpawn.position, BulletSpawn.rotation);
@@ -34,4 +26,12 @@ public class Gun : MonoBehaviour
         // Destroy the bullet after 2 seconds
         Destroy(bullet, 2.0f);
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0))
+            Fire();
+    }
+
+    #endregion Private Methods
 }
