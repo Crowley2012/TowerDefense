@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,13 +7,15 @@ public class Enemy : MonoBehaviour
     public float WalkSpeed = 1.5f;
     public float Damage = 0.01f;
     private float Health = 100;
+    public GameObject HealthText; 
     #endregion
 
     #region Unity Methods
 
     void Start()
     {
-        Health = Random.Range(100f, 150f);
+        Health = Random.Range(100, 150);
+        HealthText.GetComponent<TextMesh>().text = Health.ToString();
     }
 
     void Update ()
@@ -25,8 +28,11 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name.Contains("Bullet"))
-            Health -= 20;
+        if (!col.gameObject.name.Contains("Bullet"))
+            return;
+
+        Health -= 20;
+        HealthText.GetComponent<TextMesh>().text = Health.ToString();
     }
     #endregion
 }
