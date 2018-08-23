@@ -38,6 +38,16 @@ public class EnemyPool : MonoBehaviour
 
     #endregion Unity Methods
 
+    public void Reset()
+    {
+        CancelInvoke();
+
+        Enemies.ForEach(x => Destroy(x.gameObject));
+
+        Enemies = new List<GameObject>();
+        Pool = new List<GameObject>();
+    }
+
     #region Private Methods
 
     private void PoolEnemy()
@@ -51,7 +61,7 @@ public class EnemyPool : MonoBehaviour
         var x = Random.Range(0f, 10f);
         var enemy = Pool.First();
 
-        Enemies.Add(Instantiate(enemy, new Vector3(x, 1f, 20f), Quaternion.identity));
+        Enemies.Add(Instantiate(enemy, new Vector3(x, 1f, 30f), Quaternion.identity));
         Pool.Remove(enemy);
     }
 

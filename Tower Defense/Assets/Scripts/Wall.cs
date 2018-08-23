@@ -5,32 +5,60 @@ public class Wall : MonoBehaviour
 {
     #region Public Fields
 
-    public float Health = 100f;
-    public Text HealthText;
-
+    public Text DeathScreen;
+    public Slider HealthSlider;
+    public float MaxHealth = 100f;
     #endregion Public Fields
+
+    #region Private Fields
+
+    private float _currentHealth;
+
+    #endregion Private Fields
 
     #region Unity Methods
 
-    private void OnCollisionStay(Collision collisionInfo)
+    private void OnCollisionEnter(Collision collisionInfo)
     {
         if (!collisionInfo.gameObject.name.Contains("EnemyPrefab"))
             return;
 
-        foreach (ContactPoint contact in collisionInfo.contacts)
-        {
-            Health -= collisionInfo.gameObject.GetComponent<Enemy>().Damage;
+        _currentHealth -= collisionInfo.gameObject.GetComponent<Enemy>().Damage;
 
-            HealthText.text = string.Format("Health: {0}", Health);
+        if (_currentHealth <= 0)
+            Death();
+        else
+            HealthSlider.value = _currentHealth / MaxHealth;
 
-            Destroy(collisionInfo.gameObject);
-        }
+        Destroy(collisionInfo.gameObject);
     }
 
     private void Start()
     {
-        HealthText.text = string.Format("Health: {0}", Health);
+        _currentHealth = MaxHealth;
     }
 
     #endregion Unity Methods
+
+
+    #region Private Methods
+
+    public void Reset()
+    {
+        _currentHealth = MaxHealth;
+        HealthSlider.value = _currentHealth / MaxHealth;
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    private void Death()
+    {
+        HealthSlider.value = 0;
+        DeathScreen.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    #endregion Private Methods
 }

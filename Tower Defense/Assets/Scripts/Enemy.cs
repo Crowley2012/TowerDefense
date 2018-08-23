@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
     #region Public Fields
 
     public GameObject BloodSplatter;
-    public float Damage = 0.01f;
+    public float Damage = 3f;
     public GameObject HealthText;
     public float MaxSpeed = 1.5f;
     public float RecoverySpeed = 1f;
