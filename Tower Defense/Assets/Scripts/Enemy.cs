@@ -66,8 +66,8 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
 
         //Prevent backwards movement
-        if (_currentSpeed < 0f)
-            _currentSpeed = 0.25f;
+        if (_currentSpeed <= 0f)
+            _currentSpeed = 0.10f;
     }
 
     #endregion Unity Methods
@@ -79,7 +79,10 @@ public class Enemy : MonoBehaviour
         if (_currentSpeed < MaxSpeed)
         {
             //Increase speed exponentially
-            _currentSpeed *= 2f;
+            _currentSpeed *= 1.5f;
+
+            if (_currentSpeed > MaxSpeed)
+                _currentSpeed = MaxSpeed;
         }
         else
         {

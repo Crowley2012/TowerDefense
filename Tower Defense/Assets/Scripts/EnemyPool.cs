@@ -13,7 +13,6 @@ public class EnemyPool : MonoBehaviour
 
     #region Private Fields
 
-    private readonly int _maxSpawned = 10;
     private bool _coolDown;
     private List<GameObject> _pooled;
     private List<GameObject> _spawned;
@@ -30,15 +29,15 @@ public class EnemyPool : MonoBehaviour
 
     private void Update()
     {
-        //Pool all enemies for round
+        //Pool all enemies for wave
         if (_pooled.Count == 0 && _spawned.Count == 0)
         {
-            gameObject.GetComponent<Rounds>().NextRound();
+            gameObject.GetComponent<Waves>().NextWave();
             PoolEnemies();
         }
 
         //Spawn enemies in pool
-        if (_spawned.Count > 0 && _spawned.Count < _maxSpawned && !_coolDown)
+        if (_spawned.Count > 0 && _spawned.Count < gameObject.GetComponent<Waves>().MaxSpawnedEnemies && !_coolDown)
             SpawnEnemy();
 
         //Remove destroyed enemies
@@ -73,11 +72,11 @@ public class EnemyPool : MonoBehaviour
 
     private void PoolEnemies()
     {
-        //Populate pool for al round enemies
-        for (int i = 0; i < gameObject.GetComponent<Rounds>().RoundEnemies; i++)
+        //Populate pool for all wave enemies
+        for (int i = 0; i < gameObject.GetComponent<Waves>().TotalWaveEnemies; i++)
             _pooled.Add(Enemy);
 
-        //Start off the round
+        //Start off the wave
         SpawnEnemy();
     }
 

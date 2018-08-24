@@ -15,6 +15,7 @@ public class Menu : MonoBehaviour
         Wall.GetComponent<Wall>().Reset();
         Gun.GetComponent<Gun>().Reset();
         gameObject.GetComponent<EnemyPool>().Reset();
+        gameObject.GetComponent<Waves>().Reset();
 
         Time.timeScale = 1;
     }

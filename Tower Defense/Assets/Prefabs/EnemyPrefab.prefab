@@ -203,7 +203,7 @@ MonoBehaviour:
     type: 2}
   Damage: 50
   HealthText: {fileID: 1520938287379736}
-  MaxSpeed: 1.5
+  MaxSpeed: 2.5
   RecoverySpeed: 1
 --- !u!136 &136081594872183244
 CapsuleCollider:
