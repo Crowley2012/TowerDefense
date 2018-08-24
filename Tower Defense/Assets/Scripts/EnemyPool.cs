@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -7,14 +8,15 @@ public class EnemyPool : MonoBehaviour
     #region Public Fields
 
     public GameObject Enemy;
-    public int MaxEnemies = 10;
 
     #endregion Public Fields
 
     #region Private Fields
 
-    private List<GameObject> Enemies;
-    private List<GameObject> Pool;
+    private readonly int _maxSpawned = 10;
+    private bool _coolDown;
+    private List<GameObject> _pooled;
+    private List<GameObject> _spawned;
 
     #endregion Private Fields
 
@@ -22,47 +24,75 @@ public class EnemyPool : MonoBehaviour
 
     private void Start()
     {
-        Enemies = new List<GameObject>();
-        Pool = new List<GameObject>();
+        _spawned = new List<GameObject>();
+        _pooled = new List<GameObject>();
     }
 
     private void Update()
     {
-        //Spawn enemy
-        if (Enemies.Count + Pool.Count < MaxEnemies)
-            PoolEnemy();
+        //Pool all enemies for round
+        if (_pooled.Count == 0 && _spawned.Count == 0)
+        {
+            gameObject.GetComponent<Rounds>().NextRound();
+            PoolEnemies();
+        }
+
+        //Spawn enemies in pool
+        if (_spawned.Count > 0 && _spawned.Count < _maxSpawned && !_coolDown)
+            SpawnEnemy();
 
         //Remove destroyed enemies
-        Enemies = Enemies.Where(x => x != null).ToList();
+        _spawned = _spawned.Where(x => x != null).ToList();
     }
 
     #endregion Unity Methods
+
+    #region Public Methods
 
     public void Reset()
     {
         CancelInvoke();
 
-        Enemies.ForEach(x => Destroy(x.gameObject));
+        //Destroy all spawned enemies
+        _spawned.ForEach(x => Destroy(x.gameObject));
 
-        Enemies = new List<GameObject>();
-        Pool = new List<GameObject>();
+        _spawned = new List<GameObject>();
+        _pooled = new List<GameObject>();
     }
+
+    #endregion Public Methods
 
     #region Private Methods
 
-    private void PoolEnemy()
+    private IEnumerator CoolDown()
     {
-        Pool.Add(Enemy);
-        InvokeRepeating("SpawnEnemy", Random.Range(2f, 10f), 0);
+        _coolDown = true;
+        yield return new WaitForSeconds(Random.Range(0f, 3f));
+        _coolDown = false;
+    }
+
+    private void PoolEnemies()
+    {
+        //Populate pool for al round enemies
+        for (int i = 0; i < gameObject.GetComponent<Rounds>().RoundEnemies; i++)
+            _pooled.Add(Enemy);
+
+        //Start off the round
+        SpawnEnemy();
     }
 
     private void SpawnEnemy()
     {
-        var x = Random.Range(0f, 10f);
-        var enemy = Pool.First();
+        if (_pooled.Count == 0)
+            return;
 
-        Enemies.Add(Instantiate(enemy, new Vector3(x, 1f, 30f), Quaternion.identity));
-        Pool.Remove(enemy);
+        //Instantiate enemy and remove from pool
+        var enemy = _pooled.First();
+        _spawned.Add(Instantiate(enemy, new Vector3(Random.Range(0f, 10f), 1f, 30f), Quaternion.identity));
+        _pooled.Remove(enemy);
+
+        //Spawn cool down
+        StartCoroutine(CoolDown());
     }
 
     #endregion Private Methods
