@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BloodSplatter: {fileID: 1273243281728664, guid: 58f07dd0c78525644a9bb9c64eb2c120,
     type: 2}
-  Damage: 50
+  Damage: 20
   HealthText: {fileID: 1520938287379736}
   MaxSpeed: 2.5
   RecoverySpeed: 1

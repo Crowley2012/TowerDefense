@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
     public FireModes FireMode;
     public float FireRate = 0.1f;
     public GameObject Smoke;
+
     #endregion Public Fields
 
     #region Private Fields
@@ -42,7 +43,7 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && _currentClip != ClipSize)
             StartCoroutine(Reload());
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -85,7 +86,8 @@ public class Gun : MonoBehaviour
         FireMode = FireModes.Single;
         UpdateGunText();
     }
-    #endregion
+
+    #endregion Public Methods
 
     #region Private Methods
 

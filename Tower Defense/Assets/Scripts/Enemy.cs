@@ -5,17 +5,17 @@ public class Enemy : MonoBehaviour
     #region Public Fields
 
     public GameObject BloodSplatter;
-    public float Damage = 3f;
     public GameObject HealthText;
     public float MaxSpeed = 1.5f;
     public float RecoverySpeed = 1f;
+    public float Damage;
+    public float Health;
 
     #endregion Public Fields
 
     #region Private Fields
 
     private float _currentSpeed;
-    private float _health;
 
     #endregion Private Fields
 
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.name.Contains("Bullet"))
         {
             //Decrement health
-            _health -= 20;
+            Health -= 20;
 
             //Show blood splatter
             var blood = Instantiate(BloodSplatter, collision.contacts[0].point, collision.transform.rotation);
@@ -46,11 +46,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        //Set current speed
         _currentSpeed = MaxSpeed;
-
-        //Choose a health level
-        _health = Random.Range(100, 150);
+        Health = Random.Range(100, 150);
+        Damage = Random.Range(5f, 20f);
     }
 
     private void Update()
@@ -62,8 +60,8 @@ public class Enemy : MonoBehaviour
         HealthText.GetComponent<TextMesh>().text = _currentSpeed.ToString();
 
         //Destroy unit when killed
-        if (_health <= 0)
-            Destroy(gameObject);
+        if (Health <= 0)
+            Death();
 
         //Prevent backwards movement
         if (_currentSpeed <= 0f)
@@ -73,6 +71,16 @@ public class Enemy : MonoBehaviour
     #endregion Unity Methods
 
     #region Private Methods
+
+    private void Death()
+    {
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        gameObject.GetComponent<Rigidbody>().mass = 2;
+        gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 10f);
+        _currentSpeed = 0;
+
+        Destroy(gameObject, 3f);
+    }
 
     private void Recover()
     {
