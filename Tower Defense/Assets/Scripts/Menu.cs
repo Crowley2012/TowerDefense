@@ -6,8 +6,14 @@ public class Menu : MonoBehaviour
     public GameObject Wall;
     public GameObject Gun;
     public Text DeathScreen;
+    public Text Cash;
 
     #region Private Methods
+
+    public void Update()
+    {
+        Cash.text = "$" + Global.Cash;
+    }
 
     public void Restart()
     {

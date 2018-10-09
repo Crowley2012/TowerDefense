@@ -51,6 +51,11 @@ public class Enemy : MonoBehaviour
         Damage = Random.Range(5f, 20f);
     }
 
+    private void OnDestroy()
+    {
+        Global.Cash += 50;
+    }
+
     private void Update()
     {
         //Move unit forward
