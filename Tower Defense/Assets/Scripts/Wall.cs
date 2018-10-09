@@ -8,6 +8,7 @@ public class Wall : MonoBehaviour
     public Text DeathScreen;
     public Slider HealthSlider;
     public float MaxHealth = 100f;
+
     #endregion Public Fields
 
     #region Private Fields
@@ -40,7 +41,6 @@ public class Wall : MonoBehaviour
 
     #endregion Unity Methods
 
-
     #region Private Methods
 
     public void Reset()
@@ -49,7 +49,7 @@ public class Wall : MonoBehaviour
         HealthSlider.value = _currentHealth / MaxHealth;
     }
 
-    #endregion
+    #endregion Private Methods
 
     #region Private Methods
 

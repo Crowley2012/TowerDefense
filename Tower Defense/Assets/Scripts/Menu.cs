@@ -3,17 +3,15 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject Wall;
-    public GameObject Gun;
+    #region Public Fields
+
     public Text DeathScreen;
-    public Text Cash;
+    public GameObject Gun;
+    public GameObject Wall;
+
+    #endregion Public Fields
 
     #region Private Methods
-
-    public void Update()
-    {
-        Cash.text = "$" + Global.Cash;
-    }
 
     public void Restart()
     {

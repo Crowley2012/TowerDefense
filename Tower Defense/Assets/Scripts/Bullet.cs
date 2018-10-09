@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.name.Equals("MidWall"))
+        if (collider.gameObject.name.Equals("MidWall"))
             Destroy(gameObject);
     }
 

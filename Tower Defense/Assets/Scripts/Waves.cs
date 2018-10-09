@@ -5,8 +5,8 @@ public class Waves : MonoBehaviour
 {
     #region Public Fields
 
-    public int TotalWaveEnemies;
     public int MaxSpawnedEnemies = 5;
+    public int TotalWaveEnemies;
     public Text WaveText;
 
     #endregion Public Fields

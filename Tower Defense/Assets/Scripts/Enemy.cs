@@ -5,11 +5,11 @@ public class Enemy : MonoBehaviour
     #region Public Fields
 
     public GameObject BloodSplatter;
+    public float Damage;
+    public float Health;
     public GameObject HealthText;
     public float MaxSpeed = 1.5f;
     public float RecoverySpeed = 1f;
-    public float Damage;
-    public float Health;
 
     #endregion Public Fields
 
@@ -44,16 +44,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Global.Cash += 50;
+    }
+
     private void Start()
     {
         _currentSpeed = MaxSpeed;
         Health = Random.Range(100, 150);
         Damage = Random.Range(5f, 20f);
-    }
-
-    private void OnDestroy()
-    {
-        Global.Cash += 50;
     }
 
     private void Update()
