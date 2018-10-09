@@ -40,7 +40,7 @@ public class Waves : MonoBehaviour
 
     private void UpdateText()
     {
-        WaveText.text = string.Format("Wave {0}", _currentWave);
+        WaveText.text = $"Wave {_currentWave}";
     }
 
     #endregion Private Methods

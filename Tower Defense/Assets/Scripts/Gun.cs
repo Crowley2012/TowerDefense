@@ -165,7 +165,7 @@ public class Gun : MonoBehaviour
 
     private void UpdateGunText()
     {
-        AmmoText.GetComponent<TextMesh>().text = string.Format("{0}\n{1}/{2}", FireMode, _currentClip, ClipSize);
+        AmmoText.GetComponent<TextMesh>().text = $"{FireMode}\n{_currentClip}/{ClipSize}";
     }
 
     #endregion Private Methods

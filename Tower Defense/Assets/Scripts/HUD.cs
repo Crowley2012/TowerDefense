@@ -5,13 +5,8 @@ public class HUD : MonoBehaviour
 {
     public Text Cash;
 
-    private void Start()
-    {
-
-    }
-
     public void Update()
     {
-        Cash.text = "$" + Global.Cash;
+        Cash.text = $"${Global.Cash}";
     }
 }

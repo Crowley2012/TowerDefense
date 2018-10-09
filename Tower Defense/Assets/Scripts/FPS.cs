@@ -21,7 +21,7 @@ public class FPS : MonoBehaviour
 
         if (_timeLeft <= 0.0)
         {
-            gameObject.GetComponent<Text>().text = string.Format("{0:F0} FPS", _accumulatedTime / _frame);
+            gameObject.GetComponent<Text>().text = $"{_accumulatedTime / _frame:0} FPS";
 
             _timeLeft = 0.5F;
             _accumulatedTime = 0.0F;
