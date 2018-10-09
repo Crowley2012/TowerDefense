@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyPool : MonoBehaviour
+public class WavePool : MonoBehaviour
 {
     #region Public Fields
 
     public GameObject Enemy;
+    public int FirstWaveEnemies = 2;
 
     #endregion Public Fields
 
     #region Private Fields
 
-    private bool _coolDown;
     private List<GameObject> _pooled;
     private List<GameObject> _spawned;
+    private bool _coolDown;
 
     #endregion Private Fields
 
@@ -25,19 +26,19 @@ public class EnemyPool : MonoBehaviour
     {
         _spawned = new List<GameObject>();
         _pooled = new List<GameObject>();
+
+        Global.Wave = 0;
+        Global.WaveEnemyCount = FirstWaveEnemies;
     }
 
     private void Update()
     {
         //Pool all enemies for wave
         if (_pooled.Count == 0 && _spawned.Count == 0)
-        {
-            gameObject.GetComponent<Waves>().NextWave();
-            PoolEnemies();
-        }
+            NextWave();
 
         //Spawn enemies in pool
-        if (_spawned.Count > 0 && _spawned.Count < gameObject.GetComponent<Waves>().MaxSpawnedEnemies && !_coolDown)
+        if (_spawned.Count > 0 && _spawned.Count < Global.WaveEnemyCount && !_coolDown)
             SpawnEnemy();
 
         //Remove destroyed enemies
@@ -46,22 +47,20 @@ public class EnemyPool : MonoBehaviour
 
     #endregion Unity Methods
 
-    #region Public Methods
-
-    public void Reset()
-    {
-        CancelInvoke();
-
-        //Destroy all spawned enemies
-        _spawned.ForEach(x => Destroy(x.gameObject));
-
-        _spawned = new List<GameObject>();
-        _pooled = new List<GameObject>();
-    }
-
-    #endregion Public Methods
-
     #region Private Methods
+
+    private void NextWave()
+    {
+        Global.Wave++;
+        Global.WaveEnemyCount = Global.Wave * 2;
+
+        //Populate pool with all wave enemies
+        for (int i = 0; i < Global.WaveEnemyCount; i++)
+            _pooled.Add(Enemy);
+
+        //Start wave
+        SpawnEnemy();
+    }
 
     private IEnumerator CoolDown()
     {
@@ -70,23 +69,13 @@ public class EnemyPool : MonoBehaviour
         _coolDown = false;
     }
 
-    private void PoolEnemies()
-    {
-        //Populate pool for all wave enemies
-        for (int i = 0; i < gameObject.GetComponent<Waves>().TotalWaveEnemies; i++)
-            _pooled.Add(Enemy);
-
-        //Start off the wave
-        SpawnEnemy();
-    }
-
     private void SpawnEnemy()
     {
         if (_pooled.Count == 0)
             return;
 
         //Instantiate enemy and remove from pool
-        var enemy = _pooled.First();
+        var enemy = _pooled[0];
         _spawned.Add(Instantiate(enemy, new Vector3(Random.Range(0f, 10f), 1f, 30f), Quaternion.identity));
         _pooled.Remove(enemy);
 

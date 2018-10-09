@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     public GameObject BloodSplatter;
     public float Damage;
     public float Health;
-    public GameObject HealthText;
     public float MaxSpeed = 1.5f;
     public float RecoverySpeed = 1f;
 
@@ -23,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("Bullet"))
+        if (collision.gameObject.name.Contains(Constants.BULLET))
         {
             //Decrement health
             Health -= 20;
@@ -60,9 +59,6 @@ public class Enemy : MonoBehaviour
     {
         //Move unit forward
         transform.Translate(Vector3.back * Time.deltaTime * _currentSpeed, Space.World);
-
-        //Update text
-        HealthText.GetComponent<TextMesh>().text = _currentSpeed.ToString();
 
         //Destroy unit when killed
         if (Health <= 0)

@@ -162,6 +162,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &75623509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 75623510}
+  - component: {fileID: 75623512}
+  - component: {fileID: 75623511}
+  - component: {fileID: 75623513}
+  m_Layer: 5
+  m_Name: Shop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &75623510
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75623509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1880660676}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &75623511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75623509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &75623512
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75623509}
+  m_CullTransparentMesh: 0
+--- !u!114 &75623513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75623509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 234aab92a15f296449efb3aa32a56299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &106080143
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,17 +761,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f81a1e8dab40a4bbb4d6cc224c5781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireMode: 0
   AmmoText: {fileID: 1997367686}
   Bullet: {fileID: 1917765838637732, guid: ffce08cb00afc9541862e97178144238, type: 2}
-  BulletSpawn: {fileID: 341663334}
-  BulletSpeed: 500
-  BurstRounds: 3
   Casing: {fileID: 1617617081973816, guid: 9cdf15f257c45274483f4a41ce9fe582, type: 2}
-  CasingSpawn: {fileID: 1789702237}
-  ClipSize: 30
-  FireMode: 0
-  FireRate: 0.1
   Smoke: {fileID: 1437804439508754, guid: eec476d21a73c2444891fddf4d1d66bc, type: 2}
+  BulletSpawn: {fileID: 341663334}
+  CasingSpawn: {fileID: 1789702237}
+  BulletSpeed: 500
+  FireRate: 0.1
+  BurstRounds: 3
+  ClipSize: 30
 --- !u!1 &719152062
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,9 +934,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -958,8 +1039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0649d1ed52cd9cd4dbd50470c55980fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathScreen: {fileID: 1911657405}
-  HealthSlider: {fileID: 727862602}
   MaxHealth: 100
 --- !u!1 &854382626
 GameObject:
@@ -1921,6 +2000,7 @@ RectTransform:
   - {fileID: 949381971}
   - {fileID: 1213519727}
   - {fileID: 854382627}
+  - {fileID: 75623510}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1941,6 +2021,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cash: {fileID: 854382629}
+  DeathScreen: {fileID: 1911657405}
+  WaveText: {fileID: 949381972}
+  HealthSlider: {fileID: 727862602}
 --- !u!1 &1911657403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2264,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2132481560}
+      - m_Target: {fileID: 1880660677}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -2237,8 +2320,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2132481559}
   - component: {fileID: 2132481558}
-  - component: {fileID: 2132481560}
-  - component: {fileID: 2132481561}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -2258,6 +2339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1455606414784334, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
+  FirstWaveEnemies: 2
 --- !u!4 &2132481559
 Transform:
   m_ObjectHideFlags: 0
@@ -2271,31 +2353,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2132481560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2132481557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa340c157a2f75f46af1fedbab58a089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathScreen: {fileID: 1911657405}
-  Gun: {fileID: 707398859}
-  Wall: {fileID: 832770147}
---- !u!114 &2132481561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2132481557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d82ce9f6f1a549146ac404955e82f207, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxSpawnedEnemies: 5
-  TotalWaveEnemies: 0
-  WaveText: {fileID: 949381972}

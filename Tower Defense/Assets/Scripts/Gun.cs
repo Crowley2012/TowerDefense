@@ -11,17 +11,17 @@ public class Gun : MonoBehaviour
 
     #region Public Fields
 
+    public FireModes FireMode;
     public GameObject AmmoText;
     public GameObject Bullet;
-    public Transform BulletSpawn;
-    public float BulletSpeed = 500;
-    public int BurstRounds = 3;
     public GameObject Casing;
-    public Transform CasingSpawn;
-    public int ClipSize = 30;
-    public FireModes FireMode;
-    public float FireRate = 0.1f;
     public GameObject Smoke;
+    public Transform BulletSpawn;
+    public Transform CasingSpawn;
+    public float BulletSpeed = 500;
+    public float FireRate = 0.1f;
+    public int BurstRounds = 3;
+    public int ClipSize = 30;
 
     #endregion Public Fields
 
@@ -77,17 +77,6 @@ public class Gun : MonoBehaviour
     }
 
     #endregion Unity Methods
-
-    #region Public Methods
-
-    public void Reset()
-    {
-        _currentClip = ClipSize;
-        FireMode = FireModes.Single;
-        UpdateGunText();
-    }
-
-    #endregion Public Methods
 
     #region Private Methods
 
