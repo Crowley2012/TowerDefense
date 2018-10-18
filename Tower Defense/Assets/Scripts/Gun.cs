@@ -11,17 +11,17 @@ public class Gun : MonoBehaviour
 
     #region Public Fields
 
-    public FireModes FireMode;
     public GameObject AmmoText;
     public GameObject Bullet;
-    public GameObject Casing;
-    public GameObject Smoke;
     public Transform BulletSpawn;
-    public Transform CasingSpawn;
     public float BulletSpeed = 500;
-    public float FireRate = 0.1f;
     public int BurstRounds = 3;
+    public GameObject Casing;
+    public Transform CasingSpawn;
     public int ClipSize = 30;
+    public FireModes FireMode;
+    public float FireRate = 0.1f;
+    public GameObject Smoke;
 
     #endregion Public Fields
 
@@ -44,35 +44,42 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && _currentClip != ClipSize)
-            StartCoroutine(Reload());
+            StartCoroutine(Reload(3));
 
         if (Input.GetKeyDown(KeyCode.F))
             ToggleFireModes();
 
-        switch (FireMode)
+        if (!Global.ShopOpen)
         {
-            case FireModes.Single:
-                if (Input.GetMouseButtonDown(0))
-                    Fire();
-                break;
+            switch (FireMode)
+            {
+                case FireModes.Single:
+                    if (Input.GetMouseButtonDown(0))
+                        Fire();
+                    break;
 
-            case FireModes.Burst:
-                if (Input.GetMouseButtonDown(0))
-                {
-                    float wait = 0f;
-
-                    for (int i = 0; i < BurstRounds; i++)
+                case FireModes.Burst:
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        Invoke("Fire", wait);
-                        wait += 0.1f;
-                    }
-                }
-                break;
+                        float wait = 0f;
 
-            case FireModes.Auto:
-                if (Input.GetMouseButton(0))
-                    Fire();
-                break;
+                        for (int i = 0; i < BurstRounds; i++)
+                        {
+                            Invoke("Fire", wait);
+                            wait += 0.1f;
+                        }
+                    }
+                    break;
+
+                case FireModes.Auto:
+                    if (Input.GetMouseButton(0))
+                        Fire();
+                    break;
+            }
+        }
+        else
+        {
+            StartCoroutine(Reload(0));
         }
     }
 
@@ -113,7 +120,7 @@ public class Gun : MonoBehaviour
 
         // Reload if clip is empty
         if (_currentClip <= 0)
-            StartCoroutine(Reload());
+            StartCoroutine(Reload(3));
 
         // Fire rate
         else if (FireMode != FireModes.Burst || _burstCount == 3)
@@ -131,12 +138,12 @@ public class Gun : MonoBehaviour
         _fireable = true;
     }
 
-    private IEnumerator Reload()
+    private IEnumerator Reload(int seconds)
     {
         _fireable = false;
         AmmoText.GetComponent<TextMesh>().text = "Reloading";
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(seconds);
 
         _fireable = true;
         _currentClip = ClipSize;

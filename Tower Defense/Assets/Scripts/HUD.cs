@@ -8,8 +8,9 @@ public class HUD : MonoBehaviour
 
     public Text Cash;
     public Text DeathScreen;
-    public Text WaveText;
     public Slider HealthSlider;
+    public Text WaveText;
+    public GameObject ShopPanel;
 
     #endregion Public Fields
 
@@ -29,6 +30,9 @@ public class HUD : MonoBehaviour
 
         if (Global.Dead)
             ShowDeathScreen();
+
+        if (Global.ShopOpen && !ShopPanel.activeSelf)
+            ShopPanel.SetActive(true);
     }
 
     #endregion Public Methods

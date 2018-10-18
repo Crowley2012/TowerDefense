@@ -14,9 +14,9 @@ public class WavePool : MonoBehaviour
 
     #region Private Fields
 
+    private bool _coolDown;
     private List<GameObject> _pooled;
     private List<GameObject> _spawned;
-    private bool _coolDown;
 
     #endregion Private Fields
 
@@ -49,8 +49,18 @@ public class WavePool : MonoBehaviour
 
     #region Private Methods
 
+    private IEnumerator CoolDown()
+    {
+        _coolDown = true;
+        yield return new WaitForSeconds(Random.Range(0f, 3f));
+        _coolDown = false;
+    }
+
     private void NextWave()
     {
+        if (Global.Wave > 0)
+            Global.ShopOpen = true;
+
         Global.Wave++;
         Global.WaveEnemyCount = Global.Wave * 2;
 
@@ -60,13 +70,6 @@ public class WavePool : MonoBehaviour
 
         //Start wave
         SpawnEnemy();
-    }
-
-    private IEnumerator CoolDown()
-    {
-        _coolDown = true;
-        yield return new WaitForSeconds(Random.Range(0f, 3f));
-        _coolDown = false;
     }
 
     private void SpawnEnemy()
