@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     #region Public Fields
 
     public GameObject AmmoText;
+    public GameObject AmmoBackgroundText;
     public GameObject Bullet;
     public Transform BulletSpawn;
     public float BulletSpeed = 500;
@@ -142,6 +143,7 @@ public class Gun : MonoBehaviour
     {
         _fireable = false;
         AmmoText.GetComponent<TextMesh>().text = "Reloading";
+        AmmoBackgroundText.GetComponent<TextMesh>().text = "Reloading";
 
         yield return new WaitForSeconds(seconds);
 
@@ -162,6 +164,7 @@ public class Gun : MonoBehaviour
     private void UpdateGunText()
     {
         AmmoText.GetComponent<TextMesh>().text = $"{FireMode}\n{_currentClip}/{ClipSize}";
+        AmmoBackgroundText.GetComponent<TextMesh>().text = $"{FireMode}\n{_currentClip}/{ClipSize}";
     }
 
     #endregion Private Methods
