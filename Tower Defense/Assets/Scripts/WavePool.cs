@@ -33,6 +33,9 @@ public class WavePool : MonoBehaviour
 
     private void Update()
     {
+        if (Global.Dead)
+            return;
+
         //Pool all enemies for wave
         if (_pooled.Count == 0 && _spawned.Count == 0)
             NextWave();

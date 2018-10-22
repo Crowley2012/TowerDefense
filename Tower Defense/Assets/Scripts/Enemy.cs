@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     #region Private Fields
 
     private float _currentSpeed;
+    private bool _dead;
 
     #endregion Private Fields
 
@@ -43,11 +44,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        Global.Cash += 50;
-    }
-
     private void Start()
     {
         _currentSpeed = MaxSpeed;
@@ -61,7 +57,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector3.back * Time.deltaTime * _currentSpeed, Space.World);
 
         //Destroy unit when killed
-        if (Health <= 0)
+        if (Health <= 0 && !_dead)
             Death();
 
         //Prevent backwards movement
@@ -75,6 +71,9 @@ public class Enemy : MonoBehaviour
 
     private void Death()
     {
+        _dead = true;
+        Global.Cash += 50;
+
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         gameObject.GetComponent<Rigidbody>().mass = 2;
         gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 10f);

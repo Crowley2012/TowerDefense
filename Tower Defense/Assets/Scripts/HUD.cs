@@ -7,20 +7,14 @@ public class HUD : MonoBehaviour
     #region Public Fields
 
     public Text Cash;
-    public Text DeathScreen;
     public Slider HealthSlider;
     public Text WaveText;
+    public GameObject DeathScreen;
     public GameObject ShopPanel;
 
     #endregion Public Fields
 
     #region Public Methods
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 1;
-    }
 
     public void Update()
     {
@@ -30,8 +24,7 @@ public class HUD : MonoBehaviour
 
         if (Global.Dead)
             ShowDeathScreen();
-
-        if (Global.ShopOpen && !ShopPanel.activeSelf)
+        else if (Global.ShopOpen && !ShopPanel.activeSelf)
             ShopPanel.SetActive(true);
     }
 
@@ -39,9 +32,19 @@ public class HUD : MonoBehaviour
 
     #region Private Methods
 
+    public void Restart()
+    {
+        Global.ShopOpen = false;
+        Global.Cash = 0;
+        Global.ShopOpen = false;
+        ShopPanel.SetActive(false);
+        Global.Dead = false;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
     private void ShowDeathScreen()
     {
-        Global.Dead = false;
         Time.timeScale = 0;
         DeathScreen.gameObject.SetActive(true);
     }
