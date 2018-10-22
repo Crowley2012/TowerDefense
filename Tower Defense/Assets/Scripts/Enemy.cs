@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float Health;
     public float MaxSpeed = 1.5f;
     public float RecoverySpeed = 1f;
+    public GameObject HealthBarBackground;
+    public GameObject HealthBar;
 
     #endregion Public Fields
 
