@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     #region Private Fields
 
     private float _currentSpeed;
+    private float _maxHealth;
     private bool _dead;
 
     #endregion Private Fields
@@ -29,6 +30,11 @@ public class Enemy : MonoBehaviour
         {
             //Decrement health
             Health -= 20;
+
+            //Update enemey health bar
+            var healthRatio = Health / _maxHealth;
+            var currentVector = HealthBar.transform.localScale;
+            HealthBar.transform.localScale = new Vector3(currentVector.x, currentVector.y, HealthBar.transform.localScale.z < 0 ? 0 : healthRatio);
 
             //Show blood splatter
             var blood = Instantiate(BloodSplatter, collision.contacts[0].point, collision.transform.rotation);
@@ -49,8 +55,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _currentSpeed = MaxSpeed;
-        Health = Random.Range(100, 150);
-        Damage = Random.Range(5f, 20f);
+        _maxHealth = Health = Random.Range(Health, Health + 50);
+        Damage = Random.Range(Damage, Damage + 10);
     }
 
     private void Update()
@@ -75,6 +81,8 @@ public class Enemy : MonoBehaviour
     {
         _dead = true;
         Global.Cash += 50;
+        HealthBar.SetActive(false);
+        HealthBarBackground.SetActive(false);
 
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         gameObject.GetComponent<Rigidbody>().mass = 2;

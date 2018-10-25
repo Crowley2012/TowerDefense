@@ -8,6 +8,7 @@ public class WavePool : MonoBehaviour
     #region Public Fields
 
     public GameObject Enemy;
+    public GameObject GiantEnemy;
     public int FirstWaveEnemies = 2;
 
     #endregion Public Fields
@@ -69,7 +70,7 @@ public class WavePool : MonoBehaviour
 
         //Populate pool with all wave enemies
         for (int i = 0; i < Global.WaveEnemyCount; i++)
-            _pooled.Add(Enemy);
+            _pooled.Add(Random.Range(0, 2) == 1 ? GiantEnemy : Enemy);
 
         //Start wave
         SpawnEnemy();

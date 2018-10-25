@@ -13581,52 +13581,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31c69e98b28c0a446a7982d4f1872d2e, type: 3}
   m_IsPrefabAsset: 0
---- !u!1001 &2034318506
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.259935
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 14.887396
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456014601636456, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795846075200482, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!4 &2039912399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 653a77d8711adf3429a390ba25ee55c8,
@@ -14439,6 +14393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1455606414784334, guid: 0eb96b2f5b552a247b3cf2c7c5348f45, type: 2}
+  GiantEnemy: {fileID: 1191403431231314, guid: 09894d13ae65fcc4e9e5dd46c3923531, type: 2}
   FirstWaveEnemies: 2
 --- !u!4 &2132481559
 Transform:
